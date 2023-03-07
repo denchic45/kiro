@@ -31,6 +31,7 @@ tasks.withType<KotlinCompile> {
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {

@@ -1,4 +1,5 @@
 val ktorVersion: String by project
+val decomposeVersion: String by project
 
 plugins {
     kotlin("multiplatform")
@@ -33,6 +34,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-auth:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
 
+                // Decompose
+                api("com.arkivanov.decompose:decompose:$decomposeVersion")
+
                 // kotlin-result
                 implementation("com.michael-bull.kotlin-result:kotlin-result:1.1.16")
 
@@ -61,6 +65,8 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 api(compose.preview)
+                // Decompose
+                implementation("com.arkivanov.decompose:extensions-compose-jetbrains:$decomposeVersion")
             }
         }
         val desktopTest by getting
