@@ -8,7 +8,8 @@ group = "com.denchic45.kiro"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    jcenter()
+    mavenCentral()
+    google()
 }
 
 dependencies {

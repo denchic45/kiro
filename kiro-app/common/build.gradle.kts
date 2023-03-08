@@ -21,9 +21,11 @@ kotlin {
             dependencies {
                 api(compose.runtime)
                 api(compose.foundation)
-                api(compose.material)
+                api(compose.preview)
+//                api(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 api(compose.material3)
+                api(compose.materialIconsExtended)
 
                 api(project(":kiro-api:api"))
 
@@ -40,6 +42,7 @@ kotlin {
                 // kotlin-result
                 implementation("com.michael-bull.kotlin-result:kotlin-result:1.1.16")
 
+                // settings
                 api("com.russhwolf:multiplatform-settings:1.0.0")
                 api("com.russhwolf:multiplatform-settings-coroutines:1.0.0")
 
@@ -52,19 +55,17 @@ kotlin {
             }
         }
         val androidMain by getting {
+            kotlin.srcDir("build/generated/ksp/android/androidDebug")
             dependencies {
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
-            }
-        }
-        val androidTest by getting {
-            dependencies {
-                implementation("junit:junit:4.13.2")
+
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
             }
         }
         val desktopMain by getting {
+            kotlin.srcDir("build/generated/ksp/desktop/desktopMain/kotlin")
             dependencies {
-                api(compose.preview)
                 // Decompose
                 implementation("com.arkivanov.decompose:extensions-compose-jetbrains:$decomposeVersion")
             }
@@ -72,10 +73,6 @@ kotlin {
         val desktopTest by getting
     }
 }
-
-//kotlin.sourceSets.commonMain {
-//    kotlin.srcDir("build/generated/ksp/")
-//}
 
 dependencies {
     add("kspAndroid", "me.tatarka.inject:kotlin-inject-compiler-ksp:0.6.1")

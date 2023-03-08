@@ -1,5 +1,13 @@
 package com.denchic45.kiro.di
 
-import me.tatarka.inject.annotations.Component
+import com.denchic45.kiro.preferences.AppPreferences
+import com.denchic45.kiro.service.AuthService
 
-abstract class AppComponent(@Component val apiComponent: ApiComponent)
+abstract class AppComponent {
+    abstract val apiComponent: ApiComponent
+    abstract val preferencesComponent: PreferencesComponent
+
+    abstract val appPreferences: AppPreferences
+
+    abstract val authService: AuthService
+}
