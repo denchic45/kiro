@@ -15,6 +15,4 @@ object AuthErrors {
 
 enum class AuthErrs: ErrorReason { REFRESH_TOKEN_REQUIRED, USER_ALREADY_REGISTERED}
 
-interface ErrorReason {
-//    val reason:String
-}
+interface ErrorReason
