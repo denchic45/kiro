@@ -35,4 +35,5 @@ android {
             isMinifyEnabled = false
         }
     }
+    namespace = "com.denchic45.kiro.android"
 }
