@@ -1,10 +1,9 @@
-package com.denchic45.kiro.feature.studygroup.repository
+package com.denchic45.kiro.feature.studygroup
 
 import com.denchic45.kiro.api.studygroup.model.CreateStudyGroupRequest
 import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
 import com.denchic45.kiro.database.table.StudyGroupDao
 import com.denchic45.kiro.database.table.StudyGroups
-import com.denchic45.kiro.feature.studygroup.toResponse
 import com.studiversity.database.exists
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere

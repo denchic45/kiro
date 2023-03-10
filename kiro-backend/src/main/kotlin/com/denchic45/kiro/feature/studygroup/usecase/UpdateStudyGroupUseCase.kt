@@ -1,7 +1,7 @@
 package com.denchic45.kiro.feature.studygroup.usecase
 
 import com.denchic45.kiro.api.studygroup.model.CreateStudyGroupRequest
-import com.denchic45.kiro.feature.studygroup.repository.StudyGroupRepository
+import com.denchic45.kiro.feature.studygroup.StudyGroupRepository
 import java.util.*
 
 class UpdateStudyGroupUseCase(private val groupRepository: StudyGroupRepository) {
