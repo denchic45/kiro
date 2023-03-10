@@ -18,6 +18,16 @@ val RobotoFamily = FontFamily(
     Font("roboto_black".toFontPath(), FontWeight.Black)
 )
 
+val GilroyFamily = FontFamily(
+//    Font("gilroy_extralight".toFontPath(), FontWeight.ExtraLight),
+//    Font("gilroy_light".toFontPath(), FontWeight.Light),
+    Font("gilroy_regular".toFontPath(), FontWeight.Normal),
+    Font("gilroy_medium".toFontPath(), FontWeight.Medium),
+    Font("gilroy_semibold".toFontPath(), FontWeight.SemiBold),
+    Font("gilroy_bold".toFontPath(), FontWeight.Bold),
+    Font("gilroy_extrabold".toFontPath(), FontWeight.ExtraBold)
+)
+
 val ManropeFamily = FontFamily(
     Font("manrope_extralight".toFontPath(), FontWeight.ExtraLight),
     Font("manrope_light".toFontPath(), FontWeight.Light),
@@ -112,14 +122,14 @@ val Typo = Typography(
         fontSize = 16.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = RobotoFamily,
+        fontFamily = ManropeFamily,
         fontWeight = FontWeight.Normal,
         letterSpacing = 0.sp,
         lineHeight = 20.sp,
         fontSize = 14.sp
     ),
     bodySmall = TextStyle(
-        fontFamily = RobotoFamily,
+        fontFamily = ManropeFamily,
         fontWeight = FontWeight.Normal,
         lineHeight = 16.sp,
         fontSize = 12.sp
@@ -132,16 +142,16 @@ val Typo = Typography(
         fontSize = 14.sp
     ),
     labelMedium = TextStyle(
-        fontFamily = RobotoFamily,
-        fontWeight = FontWeight.Normal,
-        letterSpacing = 0.10000000149011612.sp,
+        fontFamily = ManropeFamily,
+        fontWeight = FontWeight.Medium,
+        letterSpacing = 0.sp,
         lineHeight = 16.sp,
         fontSize = 12.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = RobotoFamily,
+        fontFamily = ManropeFamily,
         fontWeight = FontWeight.Medium,
-        letterSpacing = 0.10000000149011612.sp,
+        letterSpacing = 0.sp,
         lineHeight = 16.sp,
         fontSize = 11.sp
     ),

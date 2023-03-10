@@ -11,7 +11,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 @Composable
 fun AppTheme(
     typography: Typography,
-    useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
 ) {
 //    val colors = if (!useDarkTheme) {
 //        LightColors

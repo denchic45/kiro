@@ -27,4 +27,8 @@ class CourseApi(private val client: HttpClient) {
     suspend fun getById(courseId: UUID): ResponseResult<CourseResponse> {
         return client.get("/courses/$courseId").toResult()
     }
+
+    suspend fun getAll(): ResponseResult<List<CourseResponse>> {
+        return client.get("/courses").toResult()
+    }
 }
