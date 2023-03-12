@@ -7,7 +7,7 @@ import com.denchic45.kiro.api.user.model.UserResponse
 import com.denchic45.kiro.database.table.UserDao
 import com.denchic45.kiro.database.table.Users
 import com.studiversity.database.exists
-import com.studiversity.database.table.RefreshTokens
+import com.denchic45.kiro.database.table.RefreshTokens
 import com.studiversity.feature.auth.model.RefreshToken
 import com.studiversity.feature.auth.model.UserByEmail
 import org.jetbrains.exposed.sql.*
