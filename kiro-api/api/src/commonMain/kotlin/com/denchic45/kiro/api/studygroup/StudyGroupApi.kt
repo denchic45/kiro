@@ -31,14 +31,18 @@ class StudyGroupApi(private val client: HttpClient) {
     }
 
     suspend fun getById(studyGroupId: UUID): ResponseResult<StudyGroupResponse> {
-        TODO()
+        return client.get("/studygroups/$studyGroupId").toResult()
     }
 
-    suspend fun getByCourseId(studyGroupId: UUID): ResponseResult<StudyGroupResponse> {
-        TODO()
+    suspend fun getByCourseId(courseId: UUID): ResponseResult<List<StudyGroupResponse>> {
+        return client.get("/courses/$courseId/studygroups").toResult()
     }
 
     suspend fun delete(studyGroupId: UUID) {
         TODO()
+    }
+
+    suspend fun getAll(): ResponseResult<List<StudyGroupResponse>> {
+        return client.get("/studygroups").toResult()
     }
 }

@@ -16,7 +16,8 @@ class StudyGroupRepository {
             name = request.name
             studentsCount = request.studentsCount
             this.courseId = courseId
-            studyDate = request.studyDate
+            startStudyDate = request.startStudyDate
+            endStudyDate = request.endStudyDate
             educationForm = request.educationForm
         }
         return dao.toResponse()
@@ -27,7 +28,8 @@ class StudyGroupRepository {
             name = request.name
             studentsCount = request.studentsCount
             this.courseId = courseId
-            studyDate = request.studyDate
+            startStudyDate = request.startStudyDate
+            endStudyDate = request.endStudyDate
             educationForm = request.educationForm
         }!!
     }

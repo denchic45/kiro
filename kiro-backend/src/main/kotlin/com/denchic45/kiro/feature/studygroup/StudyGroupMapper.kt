@@ -7,6 +7,7 @@ fun StudyGroupDao.toResponse() = StudyGroupResponse(
     id = id.value,
     name = name,
     studentsCount = studentsCount,
-    studyDate = studyDate,
+    startStudyDate = startStudyDate,
+    endStudyDate = endStudyDate,
     educationForm = educationForm
 )

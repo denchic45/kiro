@@ -6,8 +6,6 @@ import java.util.UUID
 
 @Serializable
 data class CreateCourseRequest(
-    @Serializable(UUIDSerializer::class)
-    val id:UUID,
     val name: String,
     val plannedHours: Int,
     val plannedStudentsCount: Int

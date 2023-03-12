@@ -3,6 +3,7 @@ package com.denchic45.kiro.di
 import com.denchic45.kiro.api.auth.AuthApi
 import com.denchic45.kiro.api.auth.model.RefreshTokenRequest
 import com.denchic45.kiro.api.course.CourseApi
+import com.denchic45.kiro.api.studygroup.StudyGroupApi
 import com.denchic45.kiro.api.user.UserApi
 import com.denchic45.kiro.preferences.AppPreferences
 import com.github.michaelbull.result.unwrap
@@ -56,6 +57,10 @@ abstract class ApiComponent(
     @LayerScope
     @Provides
     fun courseApi(client: HttpClient):CourseApi = CourseApi(client)
+
+    @LayerScope
+    @Provides
+    fun studyGroupApi(client: HttpClient):StudyGroupApi = StudyGroupApi(client)
 }
 
 //typealias GuestHttpClient = HttpClient

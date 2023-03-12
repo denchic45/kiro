@@ -9,6 +9,8 @@ data class CreateStudyGroupRequest(
     val name: String,
     val studentsCount: Int,
     @Serializable(LocalDateSerializer::class)
-    val studyDate: LocalDate,
+    val startStudyDate: LocalDate,
+    @Serializable(LocalDateSerializer::class)
+    val endStudyDate: LocalDate,
     val educationForm: EducationForm
 )

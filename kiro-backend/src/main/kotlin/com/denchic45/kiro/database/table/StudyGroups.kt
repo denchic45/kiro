@@ -16,7 +16,8 @@ object StudyGroups : UUIDTable("study_group", "study_group_id") {
     val courseId = uuid("course_id").references(
         Courses.id, onUpdate = ReferenceOption.CASCADE, onDelete = ReferenceOption.CASCADE
     )
-    val studyDate = date("study_date")
+    val startStudyDate = date("start_study_date")
+    val endStudyDate = date("end_study_date")
     val educationForm = enumerationByName<EducationForm>("education_form", 40)
 }
 
@@ -26,6 +27,7 @@ class StudyGroupDao(id: EntityID<UUID>) : UUIDEntity(id) {
     var name by StudyGroups.name
     var studentsCount by StudyGroups.studentCount
     var courseId by StudyGroups.courseId
-    var studyDate by StudyGroups.studyDate
+    var startStudyDate by StudyGroups.startStudyDate
+    var endStudyDate by StudyGroups.endStudyDate
     var educationForm by StudyGroups.educationForm
 }
