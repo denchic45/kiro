@@ -1,4 +1,4 @@
-package com.studiversity.database.type
+package com.kiro.database.type
 
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ColumnType

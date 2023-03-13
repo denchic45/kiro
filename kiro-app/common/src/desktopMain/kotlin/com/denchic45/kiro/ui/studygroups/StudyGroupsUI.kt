@@ -20,11 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.denchic45.kiro.api.studygroup.model.EducationForm
-import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
 import com.denchic45.kiro.common.onSuccess
+import com.kiro.api.studygroup.model.EducationForm
+import com.kiro.api.studygroup.model.StudyGroupResponse
 import com.denchic45.kiro.ui.theme.spacing
-import com.denchic45.kiro.util.toString
+import com.kiro.util.toString
 import java.time.LocalDate
 import java.util.*
 

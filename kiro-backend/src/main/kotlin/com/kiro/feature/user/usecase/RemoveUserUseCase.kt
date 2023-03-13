@@ -1,4 +1,4 @@
-package com.studiversity.feature.user.usecase
+package com.kiro.feature.user.usecase
 
 import com.kiro.feature.user.UserRepository
 import com.kiro.transaction.SuspendTransactionWorker

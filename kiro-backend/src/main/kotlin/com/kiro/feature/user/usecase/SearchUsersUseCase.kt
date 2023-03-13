@@ -2,7 +2,7 @@ package com.kiro.feature.user.usecase
 
 import com.kiro.feature.user.UserRepository
 import com.kiro.transaction.TransactionWorker
-import com.studiversity.util.searchable
+import com.kiro.util.searchable
 
 class SearchUsersUseCase(
     private val transactionWorker: TransactionWorker,

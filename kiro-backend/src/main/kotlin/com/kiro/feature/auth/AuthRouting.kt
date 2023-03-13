@@ -5,8 +5,10 @@ import com.auth0.jwt.algorithms.Algorithm
 import com.kiro.config
 import com.kiro.feature.auth.usecase.RefreshTokenUseCase
 import com.kiro.api.auth.AuthErrors
+import com.kiro.api.auth.model.SignupRequest
 import com.kiro.api.auth.model.TokenResponse
 import com.kiro.feature.auth.usecase.SignInByEmailAndPasswordUseCase
+import com.kiro.feature.auth.usecase.SignUpUseCase
 import com.kiro.util.toDate
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -17,15 +19,15 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import java.time.LocalDateTime
 
-//fun Route.signupRoute() {
-//    val signup: SignUpUseCase by inject()
-//
-//    post("/signup") {
-//        val signupRequest = call.receive<SignupRequest>()
-//        signup(signupRequest)
-//        call.respond(HttpStatusCode.OK)
-//    }
-//}
+fun Route.signupRoute() {
+    val signup: SignUpUseCase by inject()
+
+    post("/signup") {
+        val signupRequest = call.receive<SignupRequest>()
+        signup(signupRequest)
+        call.respond(HttpStatusCode.OK)
+    }
+}
 
 fun Route.tokenRoute() {
     val signInByEmailAndPasswordUseCase: SignInByEmailAndPasswordUseCase by inject()

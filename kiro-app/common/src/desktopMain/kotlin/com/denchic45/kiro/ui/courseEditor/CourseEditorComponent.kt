@@ -1,9 +1,9 @@
 package com.denchic45.kiro.ui.courseEditor
 
 import com.arkivanov.decompose.ComponentContext
-import com.denchic45.kiro.api.course.model.CreateCourseRequest
 import com.denchic45.kiro.repository.CourseRepository
 import com.denchic45.kiro.util.componentScope
+import com.kiro.api.course.model.CreateCourseRequest
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import me.tatarka.inject.annotations.Assisted
@@ -15,7 +15,7 @@ class CourseEditorComponent(
     @Assisted
     componentContext: ComponentContext,
     @Assisted
-    private val onFinish: () -> Unit
+    private val onFinish: () -> Unit,
 ) : ComponentContext by componentContext {
 
     private val componentScope = componentScope()
@@ -60,7 +60,7 @@ class CourseEditorComponent(
     data class UiState(
         val name: String = "",
         val plannedHours: String = "",
-        val plannedStudentsCount: String = ""
+        val plannedStudentsCount: String = "",
     )
 }
 

@@ -1,3 +1,3 @@
-package com.studiversity.util
+package com.kiro.util
 
 fun String.searchable() = trim().lowercase().replace("\\s+","%")

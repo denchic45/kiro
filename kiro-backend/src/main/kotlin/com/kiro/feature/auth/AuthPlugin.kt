@@ -8,9 +8,9 @@ import com.kiro.config
 import com.kiro.util.ErrorInfo
 import com.kiro.util.respondWithError
 
-import com.studiversity.util.isEmail
-import com.studiversity.validation.ValidationResultBuilder
-import com.studiversity.validation.buildValidationResult
+import com.kiro.util.isEmail
+import com.kiro.validation.ValidationResultBuilder
+import com.kiro.validation.buildValidationResult
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -52,7 +52,7 @@ fun Application.configureAuth() {
                     }
                 }
             }
-//            signupRoute()
+            signupRoute()
             tokenRoute()
         }
     }

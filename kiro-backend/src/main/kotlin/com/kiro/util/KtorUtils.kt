@@ -1,4 +1,4 @@
-package com.studiversity.util
+package com.kiro.util
 
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString

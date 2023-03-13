@@ -1,7 +1,7 @@
 package com.kiro.database.table
 
 import com.kiro.api.studygroup.model.EducationForm
-import com.studiversity.util.varcharMax
+import com.kiro.util.varcharMax
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID

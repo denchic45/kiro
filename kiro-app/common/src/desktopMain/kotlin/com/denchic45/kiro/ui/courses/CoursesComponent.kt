@@ -1,20 +1,18 @@
 package com.denchic45.kiro.ui.courses
 
 import com.arkivanov.decompose.ComponentContext
-import com.denchic45.kiro.api.course.model.CourseResponse
-import com.denchic45.kiro.api.studygroup.model.EducationForm
-import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
 import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.repository.CourseRepository
 import com.denchic45.kiro.repository.StudyGroupRepository
 import com.denchic45.kiro.util.componentScope
 import com.github.michaelbull.result.onSuccess
+import com.kiro.api.course.model.CourseResponse
+import com.kiro.api.studygroup.model.StudyGroupResponse
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import me.tatarka.inject.annotations.Assisted
 import me.tatarka.inject.annotations.Inject
-import java.time.LocalDate
 import java.util.*
 
 @Inject
@@ -62,9 +60,9 @@ class CoursesComponent(
 
     fun onCourseClick(id: UUID) {
         componentScope.launch {
-           courseRepository.findById(id)
+            courseRepository.findById(id)
                 .onSuccess { courseResponse ->
-                studyGroupRepository.findByCourseId(courseResponse.id)
+                    studyGroupRepository.findByCourseId(courseResponse.id)
 //                Resource.Success(
 //                    listOf(
 //                        StudyGroupResponse(
@@ -77,10 +75,10 @@ class CoursesComponent(
 //                        )
 //                    )
 //                )
-                    .onSuccess { groups ->
-                    selectedCourse.update { courseResponse to groups }
+                        .onSuccess { groups ->
+                            selectedCourse.update { courseResponse to groups }
+                        }
                 }
-            }
         }
     }
 
@@ -89,10 +87,10 @@ class CoursesComponent(
     }
 
     fun onGroupClick(id: UUID) {
-     componentScope.launch {
-         studyGroupRepository.findById(id).onSuccess {
-             group.update { it }
-         }
-     }
+        componentScope.launch {
+            studyGroupRepository.findById(id).onSuccess {
+                group.update { it }
+            }
+        }
     }
 }

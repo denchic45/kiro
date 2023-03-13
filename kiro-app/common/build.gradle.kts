@@ -22,6 +22,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.preview)
+                api(compose.ui)
 //                api(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 api(compose.material3)
@@ -66,6 +67,8 @@ kotlin {
         val desktopMain by getting {
             kotlin.srcDir("build/generated/ksp/desktop/desktopMain/kotlin")
             dependencies {
+                // Compose
+//                implementation("androidx.compose.ui:ui-text:1.3.3")
                 // Decompose
                 implementation("com.arkivanov.decompose:extensions-compose-jetbrains:$decomposeVersion")
             }

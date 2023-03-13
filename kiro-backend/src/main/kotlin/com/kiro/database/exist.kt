@@ -1,4 +1,4 @@
-package com.studiversity.database
+package com.kiro.database
 
 import org.jetbrains.exposed.sql.*
 

@@ -1,4 +1,4 @@
-package com.studiversity.feature.auth.model
+package com.kiro.feature.auth.model
 
 import java.util.UUID
 

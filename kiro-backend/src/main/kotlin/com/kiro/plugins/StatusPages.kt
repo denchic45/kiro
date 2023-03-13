@@ -5,7 +5,7 @@ import com.kiro.util.ErrorInfo
 import com.kiro.util.respondWithError
 import com.kiro.util.respondWithErrors
 import com.kiro.util.toErrors
-import com.studiversity.ktor.ConflictException
+import com.kiro.ktor.ConflictException
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.*

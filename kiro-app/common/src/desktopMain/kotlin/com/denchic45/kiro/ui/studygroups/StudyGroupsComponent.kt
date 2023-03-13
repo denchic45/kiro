@@ -1,12 +1,12 @@
 package com.denchic45.kiro.ui.studygroups
 
 import com.arkivanov.decompose.ComponentContext
-import com.denchic45.kiro.api.studygroup.model.EducationForm
-import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
 import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.repository.StudyGroupRepository
 import com.denchic45.kiro.util.componentScope
+import com.kiro.api.studygroup.model.EducationForm
+import com.kiro.api.studygroup.model.StudyGroupResponse
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import me.tatarka.inject.annotations.Assisted
@@ -17,7 +17,7 @@ import java.util.*
 @Inject
 class StudyGroupsComponent(
     private val studyGroupRepository: StudyGroupRepository,
-    @Assisted componentContext: ComponentContext
+    @Assisted componentContext: ComponentContext,
 ) : ComponentContext by componentContext {
     private val componentScope = componentScope()
     private val studyGroupResponse = StudyGroupResponse(

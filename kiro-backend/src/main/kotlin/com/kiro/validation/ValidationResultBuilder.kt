@@ -1,4 +1,4 @@
-package com.studiversity.validation
+package com.kiro.validation
 
 import io.ktor.server.plugins.requestvalidation.*
 

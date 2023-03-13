@@ -1,4 +1,4 @@
-package com.studiversity.database
+package com.kiro.database
 
 import org.jetbrains.exposed.sql.Database
 
@@ -8,7 +8,6 @@ interface DatabaseFactory {
 
 class DatabaseFactoryImpl(
     url: String,
-    driver: String,
     user: String,
     password: String
 ) : DatabaseFactory {
@@ -16,7 +15,6 @@ class DatabaseFactoryImpl(
     override val database by lazy {
         Database.connect(
             url = url,
-            driver = driver,
             user = user,
             password = password
         )

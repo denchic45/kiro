@@ -3,9 +3,10 @@ package com.kiro.di
 
 import com.kiro.config
 import com.kiro.feature.studygroup.studyGroupModule
-import com.studiversity.database.DatabaseFactory
-import com.studiversity.database.DatabaseFactoryImpl
+import com.kiro.database.DatabaseFactory
+import com.kiro.database.DatabaseFactoryImpl
 import com.kiro.feature.auth.authModule
+import com.kiro.feature.course.courseModule
 import com.kiro.feature.user.userModule
 import com.kiro.transaction.DatabaseTransactionWorker
 import com.kiro.transaction.SuspendTransactionWorker
@@ -23,7 +24,6 @@ val otherModule = module {
     single<DatabaseFactory> {
         DatabaseFactoryImpl(
             config.database.url,
-            config.database.driver,
             config.database.user,
             config.database.password,
         )
@@ -38,6 +38,7 @@ fun Application.configureDI() {
             otherModule,
             authModule,
             userModule,
+            courseModule,
             studyGroupModule,
         )
     }

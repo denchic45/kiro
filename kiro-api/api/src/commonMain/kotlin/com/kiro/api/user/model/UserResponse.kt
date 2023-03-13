@@ -11,9 +11,7 @@ data class UserResponse(
     val firstName: String,
     val surname: String,
     val patronymic: String?,
-    val account: Account,
-    val avatarUrl: String,
-    val gender: Gender,
+    val account: Account
 ) {
     val fullName: String
         get() = firstName + surname

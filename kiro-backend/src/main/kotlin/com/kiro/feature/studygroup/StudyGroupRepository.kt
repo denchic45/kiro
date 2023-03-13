@@ -4,7 +4,7 @@ import com.kiro.api.studygroup.model.CreateStudyGroupRequest
 import com.kiro.api.studygroup.model.StudyGroupResponse
 import com.kiro.database.table.StudyGroupDao
 import com.kiro.database.table.StudyGroups
-import com.studiversity.database.exists
+import com.kiro.database.exists
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import java.util.*

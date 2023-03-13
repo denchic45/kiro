@@ -1,6 +1,6 @@
 package com.denchic45.kiro.common
 
-import com.denchic45.kiro.util.ErrorResponse
+import com.kiro.util.ErrorResponse
 import io.ktor.http.*
 
 sealed class Failure

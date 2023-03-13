@@ -1,4 +1,4 @@
-package com.studiversity.feature.studygroup.usecase
+package com.kiro.feature.studygroup.usecase
 
 import com.kiro.feature.studygroup.StudyGroupRepository
 import com.kiro.transaction.TransactionWorker

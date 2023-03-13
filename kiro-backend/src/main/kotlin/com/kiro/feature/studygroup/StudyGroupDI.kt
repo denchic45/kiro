@@ -1,7 +1,7 @@
 package com.kiro.feature.studygroup
 
 import com.kiro.feature.studygroup.usecase.*
-import com.studiversity.feature.studygroup.usecase.RequireExistStudyGroupUseCase
+import com.kiro.feature.studygroup.usecase.RequireExistStudyGroupUseCase
 import org.koin.dsl.module
 
 private val useCaseModule = module {

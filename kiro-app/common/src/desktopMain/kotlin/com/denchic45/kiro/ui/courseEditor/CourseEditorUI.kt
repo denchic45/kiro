@@ -10,7 +10,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogState
@@ -22,7 +21,7 @@ fun CourseEditorUI(
     uiState: CourseEditorComponent.UiState,
     onNameType: (String) -> Unit,
     onHoursType: (String) -> Unit,
-    onStudentsCountType: (String) -> Unit
+    onStudentsCountType: (String) -> Unit,
 ) {
     val pattern = remember { Regex("^\\d+\$") }
     Column {
@@ -67,7 +66,8 @@ fun CourseEditorDialog(component: CourseEditorComponent) {
     ) {
         Column(
             modifier = Modifier.padding(vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally) {
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             val uiState by component.uiState.collectAsState()
             CourseEditorUI(
                 uiState = uiState,

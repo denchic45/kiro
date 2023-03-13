@@ -1,7 +1,7 @@
 package com.kiro.feature.user
 
 import com.kiro.feature.user.usecase.FindUserByIdUseCase
-import com.studiversity.feature.user.usecase.RemoveUserUseCase
+import com.kiro.feature.user.usecase.RemoveUserUseCase
 import com.kiro.feature.user.usecase.SearchUsersUseCase
 import org.koin.dsl.module
 

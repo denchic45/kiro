@@ -14,11 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.denchic45.kiro.api.course.model.CourseResponse
-import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.ui.component.HeaderItem
 import com.denchic45.kiro.ui.theme.spacing
+import com.kiro.api.course.model.CourseResponse
+import com.kiro.api.studygroup.model.StudyGroupResponse
 import java.util.*
 
 @Composable
@@ -42,7 +42,10 @@ fun CoursesScreen(component: CoursesComponent) {
 
         details?.let {
             Spacer(Modifier.width(MaterialTheme.spacing.normal))
-            CourseDetails(it.first, it.second,{component.onGroupClick(it)}) { component.onDetailsDismiss() }
+            CourseDetails(
+                it.first,
+                it.second,
+                { component.onGroupClick(it) }) { component.onDetailsDismiss() }
         }
     }
 }
@@ -133,7 +136,7 @@ fun CourseDetails(
     response: CourseResponse,
     groups: List<StudyGroupResponse>,
     onGroupClick: (UUID) -> Unit,
-    onDismissClick: () -> Unit
+    onDismissClick: () -> Unit,
 ) {
     Card(
         modifier = Modifier.width(296.dp).fillMaxHeight(),

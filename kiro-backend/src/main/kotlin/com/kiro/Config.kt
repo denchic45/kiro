@@ -8,7 +8,7 @@ import java.util.*
 
 data class JwtConf(val audience: String, val secret: String,val realm: String)
 
-data class DatabaseConf(val url: String, val driver: String, val user: String, val password: String)
+data class DatabaseConf(val url: String, val user: String, val password: String)
 
 data class SmtpConf(
     val host: String,

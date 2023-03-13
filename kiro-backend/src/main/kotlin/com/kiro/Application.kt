@@ -7,7 +7,7 @@ import com.kiro.feature.studygroup.configureStudyGroups
 import com.kiro.feature.user.configureUsers
 import com.kiro.plugins.configureSerialization
 import com.kiro.plugins.configureStatusPages
-import com.studiversity.database.DatabaseFactory
+import com.kiro.database.DatabaseFactory
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -32,7 +32,7 @@ fun Application.module() = runBlocking {
     configureDI()
     configureSerialization()
     configureStatusPages()
-//    configureDatabase()
+    configureDatabase()
     configureAuth()
     configureUsers()
     configureCourses()

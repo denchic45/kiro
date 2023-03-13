@@ -1,6 +1,6 @@
 package com.kiro.database.table
 
-import com.studiversity.database.type.timestampWithTimeZone
+import com.kiro.database.type.timestampWithTimeZone
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.ReferenceOption
 

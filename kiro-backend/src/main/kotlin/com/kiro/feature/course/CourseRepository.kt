@@ -4,7 +4,7 @@ import com.kiro.api.course.model.CourseResponse
 import com.kiro.api.course.model.CreateCourseRequest
 import com.kiro.database.table.CourseDao
 import com.kiro.database.table.Courses
-import com.studiversity.database.exists
+import com.kiro.database.exists
 import java.util.*
 
 class CourseRepository {

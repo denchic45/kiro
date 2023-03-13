@@ -3,7 +3,7 @@ package com.kiro.feature.auth.usecase
 import com.kiro.api.auth.AuthErrors
 import com.kiro.api.auth.model.SignInByEmailPasswordRequest
 import com.kiro.feature.user.UserRepository
-import com.studiversity.feature.auth.model.RefreshToken
+import com.kiro.feature.auth.model.RefreshToken
 import com.kiro.transaction.TransactionWorker
 import io.ktor.server.plugins.*
 import org.mindrot.jbcrypt.BCrypt

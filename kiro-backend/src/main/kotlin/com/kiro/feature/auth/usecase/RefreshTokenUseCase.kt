@@ -2,7 +2,7 @@ package com.kiro.feature.auth.usecase
 
 import com.kiro.api.auth.AuthErrors
 import com.kiro.api.auth.model.RefreshTokenRequest
-import com.studiversity.feature.auth.model.RefreshToken
+import com.kiro.feature.auth.model.RefreshToken
 import com.kiro.feature.user.UserRepository
 import com.kiro.transaction.TransactionWorker
 import io.ktor.server.plugins.*

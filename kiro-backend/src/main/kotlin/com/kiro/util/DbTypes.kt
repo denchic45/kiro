@@ -1,4 +1,4 @@
-package com.studiversity.util
+package com.kiro.util
 
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.StringColumnType

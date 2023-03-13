@@ -15,11 +15,11 @@ class SignUpUserManuallyUseCase(
     suspend operator fun invoke(createUserRequest: CreateUserRequest) = transactionWorker.suspendInvoke {
         val password = PasswordGenerator().generate()
         val user = userRepository.add(createUserRequest, BCrypt.hashpw(password, BCrypt.gensalt()))
-        emailSender.sendSimpleEmail(
-            createUserRequest.email,
-            "Регистрация",
-            generateEmailMessage(createUserRequest.firstName, createUserRequest.email, password)
-        )
+//        emailSender.sendSimpleEmail(
+//            createUserRequest.email,
+//            "Регистрация",
+//            generateEmailMessage(createUserRequest.firstName, createUserRequest.email, password)
+//        )
         user
     }
 

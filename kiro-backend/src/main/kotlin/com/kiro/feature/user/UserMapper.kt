@@ -18,7 +18,5 @@ fun UserDao.toUserResponse() = UserResponse(
     firstName = firstName,
     surname = surname,
     patronymic = patronymic,
-    account = Account(email),
-    avatarUrl = avatarUrl,
-    gender = gender
+    account = Account(email)
 )

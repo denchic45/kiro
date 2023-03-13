@@ -2,19 +2,21 @@ package com.denchic45.kiro.ui.auth
 
 
 import com.arkivanov.decompose.ComponentContext
-import com.denchic45.kiro.api.auth.AuthApi
-import com.denchic45.kiro.api.auth.model.SignInByEmailPasswordRequest
 import com.denchic45.kiro.util.componentScope
 import com.github.michaelbull.result.onFailure
 import com.github.michaelbull.result.onSuccess
+import com.kiro.api.auth.AuthApi
+import com.kiro.api.auth.model.SignInByEmailPasswordRequest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import me.tatarka.inject.annotations.Assisted
 import me.tatarka.inject.annotations.Inject
 
 @Inject
 class AuthComponent(
     private val authApi: AuthApi,
+    @Assisted
     componentContext: ComponentContext,
 ) : ComponentContext by componentContext {
 

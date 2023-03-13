@@ -1,4 +1,4 @@
-package com.studiversity.ktor
+package com.kiro.ktor
 
 import io.ktor.server.application.*
 import io.ktor.server.auth.*

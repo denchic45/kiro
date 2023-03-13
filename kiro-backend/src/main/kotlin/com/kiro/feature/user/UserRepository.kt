@@ -6,10 +6,10 @@ import com.kiro.api.auth.model.SignupRequest
 import com.kiro.api.user.model.CreateUserRequest
 import com.kiro.database.table.UserDao
 import com.kiro.database.table.Users
-import com.studiversity.database.exists
+import com.kiro.database.exists
 import com.kiro.database.table.RefreshTokens
-import com.studiversity.feature.auth.model.RefreshToken
-import com.studiversity.feature.auth.model.UserByEmail
+import com.kiro.feature.auth.model.RefreshToken
+import com.kiro.feature.auth.model.UserByEmail
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList

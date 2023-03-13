@@ -2,9 +2,9 @@ package com.kiro.feature.user
 
 import com.kiro.feature.user.usecase.FindUserByIdUseCase
 import com.kiro.feature.auth.usecase.SignUpUserManuallyUseCase
-import com.studiversity.feature.user.usecase.RemoveUserUseCase
+import com.kiro.feature.user.usecase.RemoveUserUseCase
 import com.kiro.feature.user.usecase.SearchUsersUseCase
-import com.studiversity.ktor.currentUserId
+import com.kiro.ktor.currentUserId
 import com.kiro.ktor.getUuid
 import com.kiro.util.tryToUUID
 import io.ktor.http.*

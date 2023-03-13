@@ -1,4 +1,4 @@
-package com.studiversity.database.type
+package com.kiro.database.type
 
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.statements.jdbc.JdbcConnectionImpl
