@@ -32,6 +32,9 @@ application {
 repositories {
     mavenCentral()
     google()
+    flatDir {
+        dirs("libs/")
+    }
 }
 
 tasks.withType<KotlinCompile> {
@@ -73,8 +76,8 @@ tasks {
 }
 
 dependencies {
-    implementation(project(":kiro-api:api"))
-
+//    implementation(project(":kiro-api:api"))
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktorVersion")
