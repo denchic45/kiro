@@ -15,7 +15,10 @@ import kotlinx.coroutines.runBlocking
 import org.koin.ktor.ext.inject
 
 
-fun main(args: Array<String>): Unit = EngineMain.main(args)
+fun main() {
+    embeddedServer(Netty, port = config.ktor.deployment.port, host = "0.0.0.0", module = Application::module)
+        .start(wait = true)
+}
 
 //fun Application.module() {
 //    configureSerialization()

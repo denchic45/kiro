@@ -19,9 +19,18 @@ data class SmtpConf(
 )
 
 data class Config(
+    val ktor:KtorConf,
     val jwt: JwtConf,
     val database: DatabaseConf,
     val smtp: SmtpConf
+)
+
+data class KtorConf(
+    val deployment: DeploymentConf
+)
+
+data class DeploymentConf(
+    val port:Int,
 )
 
 val config: Config
