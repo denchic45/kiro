@@ -1,14 +1,13 @@
 package com.denchic45.kiro
 
+import com.denchic45.kiro.di.configureDI
 import com.denchic45.kiro.feature.auth.configureAuth
 import com.denchic45.kiro.feature.course.configureCourses
 import com.denchic45.kiro.feature.studygroup.configureStudyGroups
 import com.denchic45.kiro.feature.user.configureUsers
-import com.denchic45.kiro.plugins.configureRouting
 import com.denchic45.kiro.plugins.configureSerialization
 import com.denchic45.kiro.plugins.configureStatusPages
 import com.studiversity.database.DatabaseFactory
-import com.denchic45.kiro.di.configureDI
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -32,12 +31,11 @@ fun Application.module() = runBlocking {
     configureDI()
     configureSerialization()
     configureStatusPages()
-    configureDatabase()
+//    configureDatabase()
     configureAuth()
     configureUsers()
     configureCourses()
     configureStudyGroups()
-    configureRouting()
 }
 
 private fun Application.configureDatabase() {
