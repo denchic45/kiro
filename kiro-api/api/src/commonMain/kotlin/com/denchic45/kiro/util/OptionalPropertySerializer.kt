@@ -1,4 +1,4 @@
-package com.denchic45.kiro.util
+package com.kiro.util
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException

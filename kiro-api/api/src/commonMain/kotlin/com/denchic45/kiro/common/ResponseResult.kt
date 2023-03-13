@@ -1,6 +1,6 @@
-package com.denchic45.kiro.common
+package com.kiro.common
 
-import com.denchic45.kiro.util.ErrorResponse
+import com.kiro.util.ErrorResponse
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result

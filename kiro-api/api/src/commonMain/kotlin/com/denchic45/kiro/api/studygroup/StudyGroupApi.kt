@@ -1,9 +1,9 @@
-package com.denchic45.kiro.api.studygroup
+package com.kiro.api.studygroup
 
-import com.denchic45.kiro.api.studygroup.model.CreateStudyGroupRequest
-import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
-import com.denchic45.kiro.common.ResponseResult
-import com.denchic45.kiro.common.toResult
+import com.kiro.api.studygroup.model.CreateStudyGroupRequest
+import com.kiro.api.studygroup.model.StudyGroupResponse
+import com.kiro.common.ResponseResult
+import com.kiro.common.toResult
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*

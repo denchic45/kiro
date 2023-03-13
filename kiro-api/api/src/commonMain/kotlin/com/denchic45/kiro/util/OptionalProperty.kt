@@ -1,4 +1,4 @@
-package com.denchic45.kiro.util
+package com.kiro.util
 
 sealed class OptionalProperty<out T> {
 

@@ -1,7 +1,7 @@
-package com.denchic45.kiro.api.course.model
+package com.kiro.api.course.model
 
-import com.denchic45.kiro.api.studygroup.model.StudyGroupResponse
-import com.denchic45.kiro.util.UUIDSerializer
+import com.kiro.api.studygroup.model.StudyGroupResponse
+import com.kiro.util.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.UUID
 

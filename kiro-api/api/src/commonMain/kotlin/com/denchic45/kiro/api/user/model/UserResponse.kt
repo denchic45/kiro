@@ -1,6 +1,6 @@
-package com.denchic45.kiro.api.user.model
+package com.kiro.api.user.model
 
-import com.denchic45.kiro.util.UUIDSerializer
+import com.kiro.util.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.*
 

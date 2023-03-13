@@ -1,6 +1,6 @@
-package com.denchic45.kiro.api.studygroup.model
+package com.kiro.api.studygroup.model
 
-import com.denchic45.kiro.util.LocalDateSerializer
+import com.kiro.util.LocalDateSerializer
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
 

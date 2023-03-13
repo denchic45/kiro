@@ -19,7 +19,7 @@ plugins {
     war
 }
 
-group = "com.denchic45.kiro-backend"
+group = "com.kiro-backend"
 version = "0.0.1"
 
 application {
@@ -43,7 +43,7 @@ tasks.withType<KotlinCompile> {
 tasks {
     val shadowJarTask = named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
         // explicitly configure the filename of the resulting UberJar
-        val uberJarFileName = "com.denchic45.kiro-0.0.1.jar"
+        val uberJarFileName = "com.denchic45.kiro-backend-0.0.1.jar"
         archiveFileName.set(uberJarFileName)
 
         // Appends entries in META-INF/services resources into a single resource. For example, if there are several

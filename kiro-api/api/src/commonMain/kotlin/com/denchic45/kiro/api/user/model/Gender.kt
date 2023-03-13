@@ -1,3 +1,3 @@
-package com.denchic45.kiro.api.user.model
+package com.kiro.api.user.model
 
 enum class Gender { UNKNOWN,FEMALE, MALE }

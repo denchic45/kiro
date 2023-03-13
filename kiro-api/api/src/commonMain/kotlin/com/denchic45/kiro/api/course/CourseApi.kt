@@ -1,9 +1,9 @@
-package com.denchic45.kiro.api.course
+package com.kiro.api.course
 
-import com.denchic45.kiro.api.course.model.CourseResponse
-import com.denchic45.kiro.api.course.model.CreateCourseRequest
-import com.denchic45.kiro.common.ResponseResult
-import com.denchic45.kiro.common.toResult
+import com.kiro.api.course.model.CourseResponse
+import com.kiro.api.course.model.CreateCourseRequest
+import com.kiro.common.ResponseResult
+import com.kiro.common.toResult
 import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*

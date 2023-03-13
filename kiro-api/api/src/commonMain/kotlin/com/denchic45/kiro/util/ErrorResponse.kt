@@ -1,4 +1,4 @@
-package com.denchic45.kiro.util
+package com.kiro.util
 
 import io.ktor.http.*
 import kotlinx.serialization.DeserializationStrategy

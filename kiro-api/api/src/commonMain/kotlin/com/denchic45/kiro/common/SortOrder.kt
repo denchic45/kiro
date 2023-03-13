@@ -1,3 +1,3 @@
-package com.denchic45.kiro.common
+package com.kiro.common
 
 enum class SortOrder { ASC, DESC }

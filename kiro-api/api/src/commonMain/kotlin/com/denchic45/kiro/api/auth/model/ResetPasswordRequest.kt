@@ -1,4 +1,4 @@
-package com.denchic45.kiro.api.auth.model
+package com.kiro.api.auth.model
 
 import kotlinx.serialization.Serializable
 

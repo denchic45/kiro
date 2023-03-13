@@ -1,10 +1,10 @@
-package com.denchic45.kiro.api.user
+package com.kiro.api.user
 
-import com.denchic45.kiro.common.EmptyResponseResult
-import com.denchic45.kiro.common.ResponseResult
-import com.denchic45.kiro.common.toResult
-import com.denchic45.kiro.api.user.model.CreateUserRequest
-import com.denchic45.kiro.api.user.model.UserResponse
+import com.kiro.common.EmptyResponseResult
+import com.kiro.common.ResponseResult
+import com.kiro.common.toResult
+import com.kiro.api.user.model.CreateUserRequest
+import com.kiro.api.user.model.UserResponse
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*

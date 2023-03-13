@@ -1,4 +1,4 @@
-package com.denchic45.kiro.common
+package com.kiro.common
 
 abstract class Sorting(
     private val field: String,

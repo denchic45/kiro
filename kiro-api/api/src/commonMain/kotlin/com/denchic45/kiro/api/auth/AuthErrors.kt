@@ -1,4 +1,4 @@
-package com.denchic45.kiro.api.auth
+package com.kiro.api.auth
 
 object AuthErrors {
     const val REFRESH_TOKEN_REQUIRED = "REFRESH_TOKEN_REQUIRED"
