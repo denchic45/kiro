@@ -1,4 +1,4 @@
-package com.studiversity.transaction
+package com.denchic45.kiro.transaction
 
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction

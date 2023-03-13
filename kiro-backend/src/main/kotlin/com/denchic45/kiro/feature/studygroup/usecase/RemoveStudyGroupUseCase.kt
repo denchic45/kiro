@@ -1,7 +1,7 @@
 package com.denchic45.kiro.feature.studygroup.usecase
 
 import com.denchic45.kiro.feature.studygroup.StudyGroupRepository
-import com.studiversity.transaction.TransactionWorker
+import com.denchic45.kiro.transaction.TransactionWorker
 import io.ktor.server.plugins.*
 import java.util.*
 

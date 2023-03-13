@@ -1,10 +1,7 @@
 package com.denchic45.kiro.feature.studygroup
 
 import com.denchic45.kiro.api.studygroup.model.CreateStudyGroupRequest
-import com.denchic45.kiro.feature.studygroup.usecase.AddStudyGroupUseCase
-import com.denchic45.kiro.feature.studygroup.usecase.FindStudyGroupByIdUseCase
-import com.denchic45.kiro.feature.studygroup.usecase.RemoveStudyGroupUseCase
-import com.denchic45.kiro.feature.studygroup.usecase.UpdateStudyGroupUseCase
+import com.denchic45.kiro.feature.studygroup.usecase.*
 import com.denchic45.kiro.ktor.getUuid
 import com.denchic45.kiro.util.toUUID
 import io.ktor.http.*
@@ -19,8 +16,13 @@ import org.koin.ktor.ext.inject
 fun Application.studyGroupRoutes() {
     routing {
         authenticate("auth-jwt") {
+            route("/studygroups") {
+                studyGroupByIdRoutes()
+            }
+
             route("/courses/{courseId}/studygroups") {
                 val addStudyGroup: AddStudyGroupUseCase by inject()
+                val findStudyGroupsByCourseId: FindStudyGroupsByCourseIdUseCase by inject()
 
                 post {
                     val body = call.receive<CreateStudyGroupRequest>()
@@ -28,7 +30,11 @@ fun Application.studyGroupRoutes() {
                     val response = addStudyGroup(body, courseId)
                     call.respond(HttpStatusCode.Created, response)
                 }
-                studyGroupByIdRoutes()
+                get {
+                    val courseId = call.parameters.getUuid("courseId")
+                    val response = findStudyGroupsByCourseId(courseId)
+                    call.respond(HttpStatusCode.OK, response)
+                }
             }
         }
     }

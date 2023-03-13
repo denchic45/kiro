@@ -7,9 +7,9 @@ import com.studiversity.database.DatabaseFactory
 import com.studiversity.database.DatabaseFactoryImpl
 import com.denchic45.kiro.feature.auth.authModule
 import com.denchic45.kiro.feature.user.userModule
-import com.studiversity.transaction.DatabaseTransactionWorker
-import com.studiversity.transaction.SuspendTransactionWorker
-import com.studiversity.transaction.TransactionWorker
+import com.denchic45.kiro.transaction.DatabaseTransactionWorker
+import com.denchic45.kiro.transaction.SuspendTransactionWorker
+import com.denchic45.kiro.transaction.TransactionWorker
 import io.ktor.server.application.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob

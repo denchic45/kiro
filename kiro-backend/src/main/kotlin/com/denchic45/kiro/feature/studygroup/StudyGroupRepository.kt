@@ -36,6 +36,10 @@ class StudyGroupRepository {
 
     fun findById(id: UUID): StudyGroupResponse? = StudyGroupDao.findById(id)?.toResponse()
 
+    fun findByCourseId(courseId: UUID): List<StudyGroupResponse> {
+        return StudyGroupDao.find(StudyGroups.courseId eq courseId).map(StudyGroupDao::toResponse)
+    }
+
 //    fun find(query: String) = StudyGroupDao.wrapRows(
 //        StudyGroups.leftJoin(Specialties, { specialtyId }, { Specialties.id })
 //            .select(

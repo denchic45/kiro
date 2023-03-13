@@ -1,16 +1,14 @@
-package com.studiversity.feature.studygroup.usecase
+package com.denchic45.kiro.feature.studygroup.usecase
 
 import com.denchic45.kiro.feature.studygroup.StudyGroupRepository
 import com.denchic45.kiro.transaction.TransactionWorker
-import io.ktor.server.plugins.*
 import java.util.*
 
-class RequireExistStudyGroupUseCase(
+class FindStudyGroupsByCourseIdUseCase(
     private val transactionWorker: TransactionWorker,
     private val studyGroupRepository: StudyGroupRepository
 ) {
-
     operator fun invoke(id: UUID) = transactionWorker {
-        if (!studyGroupRepository.exist(id)) throw NotFoundException()
+        studyGroupRepository.findByCourseId(id)
     }
 }

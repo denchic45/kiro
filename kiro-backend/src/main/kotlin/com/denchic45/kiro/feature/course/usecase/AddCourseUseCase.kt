@@ -3,7 +3,7 @@ package com.denchic45.kiro.feature.course.usecase
 import com.denchic45.kiro.api.course.model.CourseResponse
 import com.denchic45.kiro.api.course.model.CreateCourseRequest
 import com.denchic45.kiro.feature.course.CourseRepository
-import com.studiversity.transaction.TransactionWorker
+import com.denchic45.kiro.transaction.TransactionWorker
 
 class AddCourseUseCase(
     private val transactionWorker: TransactionWorker,

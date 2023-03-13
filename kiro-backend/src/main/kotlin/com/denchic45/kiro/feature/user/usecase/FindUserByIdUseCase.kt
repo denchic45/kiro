@@ -1,7 +1,7 @@
 package com.denchic45.kiro.feature.user.usecase
 
 import com.denchic45.kiro.feature.user.UserRepository
-import com.studiversity.transaction.SuspendTransactionWorker
+import com.denchic45.kiro.transaction.SuspendTransactionWorker
 import io.ktor.server.plugins.*
 import java.util.UUID
 

@@ -4,7 +4,7 @@ import com.denchic45.kiro.api.auth.AuthErrors
 import com.denchic45.kiro.api.auth.model.RefreshTokenRequest
 import com.studiversity.feature.auth.model.RefreshToken
 import com.denchic45.kiro.feature.user.UserRepository
-import com.studiversity.transaction.TransactionWorker
+import com.denchic45.kiro.transaction.TransactionWorker
 import io.ktor.server.plugins.*
 import java.time.LocalDateTime
 import java.time.ZoneOffset

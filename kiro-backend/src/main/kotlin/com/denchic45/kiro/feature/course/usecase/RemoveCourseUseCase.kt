@@ -1,7 +1,7 @@
 package com.denchic45.kiro.feature.course.usecase
 
 import com.denchic45.kiro.feature.course.CourseRepository
-import com.studiversity.transaction.SuspendTransactionWorker
+import com.denchic45.kiro.transaction.SuspendTransactionWorker
 import io.ktor.server.plugins.*
 import java.util.*
 

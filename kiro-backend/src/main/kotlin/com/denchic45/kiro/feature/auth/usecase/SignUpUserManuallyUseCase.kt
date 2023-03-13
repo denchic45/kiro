@@ -3,7 +3,7 @@ package com.denchic45.kiro.feature.auth.usecase
 import com.denchic45.kiro.api.user.model.CreateUserRequest
 import com.denchic45.kiro.feature.auth.PasswordGenerator
 import com.denchic45.kiro.feature.user.UserRepository
-import com.studiversity.transaction.SuspendTransactionWorker
+import com.denchic45.kiro.transaction.SuspendTransactionWorker
 import com.denchic45.kiro.util.EmailSender
 import org.mindrot.jbcrypt.BCrypt
 

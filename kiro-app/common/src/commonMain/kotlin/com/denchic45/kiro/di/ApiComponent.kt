@@ -12,6 +12,7 @@ import io.ktor.client.engine.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.websocket.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import me.tatarka.inject.annotations.Component
@@ -35,6 +36,7 @@ abstract class ApiComponent(
     @Provides
     fun authedClient(appPreferences: AppPreferences): HttpClient = HttpClient(engine) {
         installContentNegotiation()
+        install(WebSockets)
         install(Auth) {
             bearer {
                 loadTokens {

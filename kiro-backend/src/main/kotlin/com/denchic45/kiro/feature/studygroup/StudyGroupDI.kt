@@ -1,10 +1,7 @@
 package com.denchic45.kiro.feature.studygroup
 
-import com.denchic45.kiro.feature.studygroup.usecase.AddStudyGroupUseCase
-import com.denchic45.kiro.feature.studygroup.usecase.FindStudyGroupByIdUseCase
-import com.denchic45.kiro.feature.studygroup.usecase.RemoveStudyGroupUseCase
-import com.denchic45.kiro.feature.studygroup.usecase.UpdateStudyGroupUseCase
-import com.studiversity.feature.studygroup.usecase.*
+import com.denchic45.kiro.feature.studygroup.usecase.*
+import com.studiversity.feature.studygroup.usecase.RequireExistStudyGroupUseCase
 import org.koin.dsl.module
 
 private val useCaseModule = module {
@@ -13,6 +10,7 @@ private val useCaseModule = module {
     single { UpdateStudyGroupUseCase(get()) }
     single { RemoveStudyGroupUseCase(get(), get()) }
     single { RequireExistStudyGroupUseCase(get(), get()) }
+    single { FindStudyGroupsByCourseIdUseCase(get(), get()) }
 }
 
 private val repositoryModule = module {
