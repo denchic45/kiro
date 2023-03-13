@@ -13,12 +13,14 @@ plugins {
     kotlin("jvm") version "1.8.10"
     id("io.ktor.plugin") version "2.2.4"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    war
 }
 
 group = "com.denchic45.kiro-backend"
 version = "0.0.1"
+
 application {
-    mainClass.set(".ApplicationKt")
+    mainClass.set("io.ktor.server.netty.EngineMain")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -33,6 +35,38 @@ tasks.withType<KotlinCompile> {
 repositories {
     mavenCentral()
     google()
+}
+
+tasks {
+    val shadowJarTask = named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+        // explicitly configure the filename of the resulting UberJar
+        val uberJarFileName = "com.denchic45.kiro-0.0.1.jar"
+        archiveFileName.set(uberJarFileName)
+
+        // Appends entries in META-INF/services resources into a single resource. For example, if there are several
+        // META-INF/services/org.apache.maven.project.ProjectBuilder resources spread across many JARs the individual
+        // entries will all be concatenated into a single META-INF/services/org.apache.maven.project.ProjectBuilder
+        // resource packaged into the resultant JAR produced by the shading process -
+        // Effectively ensures we bring along all the necessary bits from Jetty
+        mergeServiceFiles()
+
+        // As per the App Engine java11 standard environment requirements listed here:
+        // https://cloud.google.com/appengine/docs/standard/java11/runtime
+        // Your Jar must contain a Main-Class entry in its META-INF/MANIFEST.MF metadata file
+        manifest {
+            attributes(mapOf("Main-Class" to application.mainClass.get()))
+        }
+    }
+
+    // because we're using shadowJar, this task has limited value
+    named("jar") {
+        enabled = false
+    }
+
+    // update the `assemble` task to ensure the creation of a brand new UberJar using the shadowJar task
+    named("assemble") {
+        dependsOn(shadowJarTask)
+    }
 }
 
 dependencies {
