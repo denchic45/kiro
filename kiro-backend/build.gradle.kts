@@ -13,6 +13,9 @@ plugins {
     kotlin("jvm") version "1.8.10"
     id("io.ktor.plugin") version "2.2.4"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+
+    // Shadow plugin - enable support for building our UberJar
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     war
 }
 
@@ -26,15 +29,15 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
+repositories {
+    mavenCentral()
+    google()
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "11"
     }
-}
-
-repositories {
-    mavenCentral()
-    google()
 }
 
 tasks {
