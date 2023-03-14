@@ -44,7 +44,7 @@ fun CoursesScreen(component: CoursesComponent) {
 
         selected?.let {
             Spacer(Modifier.width(MaterialTheme.spacing.normal))
-            CourseDetailsScreen(component.courseDetailsComponent)
+            CourseDetailsScreen(component.courseDetailsComponent, component::onDetailsDismiss)
         }
     }
 }
@@ -130,10 +130,10 @@ fun CourseListItem(
 }
 
 @Composable
-fun CourseDetailsScreen(component: CourseDetailsComponent) {
+fun CourseDetailsScreen(component: CourseDetailsComponent, onDismissClick: () -> Unit) {
     val course by component.course.collectAsState()
     val groups by component.groups.collectAsState()
-    CourseDetails(course, groups, {}) {}
+    CourseDetails(course, groups, {}, onDismissClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

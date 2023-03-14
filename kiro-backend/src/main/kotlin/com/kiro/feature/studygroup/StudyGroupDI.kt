@@ -5,8 +5,9 @@ import com.kiro.feature.studygroup.usecase.RequireExistStudyGroupUseCase
 import org.koin.dsl.module
 
 private val useCaseModule = module {
-    single { FindStudyGroupByIdUseCase(get(), get()) }
     single { AddStudyGroupUseCase(get(), get()) }
+    single { FindStudyGroupByIdUseCase(get(), get()) }
+    single { FindAllStudyGroupsUseCase(get(),get()) }
     single { UpdateStudyGroupUseCase(get()) }
     single { RemoveStudyGroupUseCase(get(), get()) }
     single { RequireExistStudyGroupUseCase(get(), get()) }

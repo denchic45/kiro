@@ -8,6 +8,7 @@ import com.kiro.database.exists
 import com.kiro.database.table.CourseDao
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
+import org.jetbrains.exposed.sql.selectAll
 import java.util.*
 
 class StudyGroupRepository {
@@ -54,5 +55,9 @@ class StudyGroupRepository {
 
     fun exist(id: UUID): Boolean {
         return StudyGroups.exists { StudyGroups.id eq id }
+    }
+
+    fun findAll(): List<StudyGroupResponse> {
+        return StudyGroupDao.all().map(StudyGroupDao::toResponse)
     }
 }

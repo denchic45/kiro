@@ -17,7 +17,11 @@ fun Application.studyGroupRoutes() {
     routing {
         authenticate("auth-jwt") {
             route("/studygroups") {
+                val findAllStudyGroupsUseCase: FindAllStudyGroupsUseCase by inject()
                 studyGroupByIdRoutes()
+                get {
+                    call.respond(findAllStudyGroupsUseCase())
+                }
             }
 
             route("/courses/{courseId}/studygroups") {
@@ -33,7 +37,7 @@ fun Application.studyGroupRoutes() {
                 get {
                     val courseId = call.parameters.getUuid("courseId")
                     val response = findStudyGroupsByCourseId(courseId)
-                    call.respond(HttpStatusCode.OK, response)
+                    call.respond(response)
                 }
             }
         }

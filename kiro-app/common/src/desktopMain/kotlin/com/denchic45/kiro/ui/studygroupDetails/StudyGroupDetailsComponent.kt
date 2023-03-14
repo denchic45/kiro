@@ -1,8 +1,7 @@
-package com.denchic45.kiro.ui.courseDetails
+package com.denchic45.kiro.ui.studygroupDetails
 
 import com.arkivanov.decompose.ComponentContext
 import com.denchic45.kiro.common.Resource
-import com.denchic45.kiro.repository.CourseRepository
 import com.denchic45.kiro.repository.StudyGroupRepository
 import com.denchic45.kiro.util.componentScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,23 +12,18 @@ import me.tatarka.inject.annotations.Inject
 import java.util.*
 
 @Inject
-class CourseDetailsComponent(
+class StudyGroupDetailsComponent(
     private val studyGroupRepository: StudyGroupRepository,
-    private val courseRepository: CourseRepository,
     @Assisted
-    private val courseId: UUID,
+    groupId: UUID,
     @Assisted
-    private val componentContext: ComponentContext
+    componentContext: ComponentContext
 ) : ComponentContext by componentContext {
 
     private val componentScope = componentScope()
 
-    val course = flow {
-        emit(courseRepository.findById(courseId))
-    }.stateIn(componentScope, SharingStarted.Lazily, Resource.Loading)
-
-    val groups = flow {
-        emit(studyGroupRepository.findByCourseId(courseId))
+     val details = flow {
+        emit(studyGroupRepository.findById(groupId))
     }.stateIn(componentScope, SharingStarted.Lazily, Resource.Loading)
 
 }

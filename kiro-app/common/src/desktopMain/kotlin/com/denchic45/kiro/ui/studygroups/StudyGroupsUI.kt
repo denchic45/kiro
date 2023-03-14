@@ -20,10 +20,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
+import com.denchic45.kiro.ui.studygroupDetails.StudyGroupDetailsComponent
+import com.denchic45.kiro.ui.theme.spacing
 import com.kiro.api.studygroup.model.EducationForm
 import com.kiro.api.studygroup.model.StudyGroupResponse
-import com.denchic45.kiro.ui.theme.spacing
 import com.kiro.util.toString
 import java.time.LocalDate
 import java.util.*
@@ -42,7 +44,7 @@ fun StudyGroupsScreen(component: StudyGroupsComponent) {
                     items(it) {
                         StudyGroupListItem(
                             response = it,
-                            selected = details?.id == it.id,
+                            selected = details == it.id,
                             onClick = component::onGroupClick
                         )
                     }
@@ -52,7 +54,7 @@ fun StudyGroupsScreen(component: StudyGroupsComponent) {
 
         details?.let {
             Spacer(Modifier.width(MaterialTheme.spacing.normal))
-            StudyGroupDetails(it) {component.onDetailsDismiss()}
+            StudyGroupDetailsScreen(component.studyGroupDetailsComponent) { component.onDetailsDismiss() }
         }
     }
 }
@@ -98,56 +100,65 @@ fun StudyGroupListItem(
     }
 }
 
+
+@Composable
+fun StudyGroupDetailsScreen(component: StudyGroupDetailsComponent, onDismissClick: () -> Unit) {
+    val details by component.details.collectAsState()
+    StudyGroupDetails(details, onDismissClick)
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StudyGroupDetails(response: StudyGroupResponse, onDismissClick: () -> Unit) {
+fun StudyGroupDetails(group: Resource<StudyGroupResponse>, onDismissClick: () -> Unit) {
     Card(
         modifier = Modifier.width(296.dp).fillMaxHeight(),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(Modifier) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(start = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(response.name, Modifier)
-                Spacer(Modifier.weight(1f))
-                IconButton(onClick = { onDismissClick() }, modifier = Modifier) {
-                    Icon(
-                        Icons.Default.Close,
-                        null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+            group.onSuccess { group ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(start = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(group.name, Modifier)
+                    Spacer(Modifier.weight(1f))
+                    IconButton(onClick = { onDismissClick() }, modifier = Modifier) {
+                        Icon(
+                            Icons.Default.Close,
+                            null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
+                Divider(Modifier.fillMaxWidth())
+                ListItem(
+                    headlineText = { Text("${group.studentsCount} чел.") },
+                    leadingContent = { Icon(Icons.Default.Group, null) },
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+                )
+                ListItem(
+                    headlineText = {
+                        Text(
+                            group.startStudyDate.toString("dd MMM YYY") + " - "
+                                    + group.endStudyDate.toString("dd MMM YYY")
+                        )
+                    },
+                    leadingContent = { Icon(Icons.Default.DateRange, null) },
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+                )
+                ListItem(
+                    headlineText = { Text("Форма обучения") },
+                    supportingText = {
+                        Text(
+                            when (group.educationForm) {
+                                EducationForm.FULL_TIME -> "Очно"
+                                EducationForm.EXTRAMURAL -> "Заочно"
+                            }
+                        )
+                    },
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+                )
             }
-            Divider(Modifier.fillMaxWidth())
-            ListItem(
-                headlineText = { Text("${response.studentsCount} чел.") },
-                leadingContent = { Icon(Icons.Default.Group, null) },
-                colors = ListItemDefaults.colors(containerColor = Color.Transparent)
-            )
-            ListItem(
-                headlineText = {
-                    Text(
-                        response.startStudyDate.toString("dd MMM YYY") + " - "
-                                + response.endStudyDate.toString("dd MMM YYY")
-                    )
-                },
-                leadingContent = { Icon(Icons.Default.DateRange, null) },
-                colors = ListItemDefaults.colors(containerColor = Color.Transparent)
-            )
-            ListItem(
-                headlineText = { Text("Форма обучения") },
-                supportingText = {
-                    Text(
-                        when (response.educationForm) {
-                            EducationForm.FULL_TIME -> "Очно"
-                            EducationForm.EXTRAMURAL -> "Заочно"
-                        }
-                    )
-                },
-                colors = ListItemDefaults.colors(containerColor = Color.Transparent)
-            )
         }
     }
 }
