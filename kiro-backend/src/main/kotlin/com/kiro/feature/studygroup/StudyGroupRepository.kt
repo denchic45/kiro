@@ -5,6 +5,7 @@ import com.kiro.api.studygroup.model.StudyGroupResponse
 import com.kiro.database.table.StudyGroupDao
 import com.kiro.database.table.StudyGroups
 import com.kiro.database.exists
+import com.kiro.database.table.CourseDao
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import java.util.*
@@ -15,7 +16,7 @@ class StudyGroupRepository {
         val dao = StudyGroupDao.new {
             name = request.name
             studentsCount = request.studentsCount
-            this.courseId = courseId
+            this.course = CourseDao.findById(courseId)!!
             startStudyDate = request.startStudyDate
             endStudyDate = request.endStudyDate
             educationForm = request.educationForm
@@ -27,7 +28,7 @@ class StudyGroupRepository {
         return StudyGroupDao.findById(id)?.apply {
             name = request.name
             studentsCount = request.studentsCount
-            this.courseId = courseId
+            this.course = course
             startStudyDate = request.startStudyDate
             endStudyDate = request.endStudyDate
             educationForm = request.educationForm
