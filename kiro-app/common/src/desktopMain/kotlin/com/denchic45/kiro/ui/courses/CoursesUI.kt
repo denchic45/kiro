@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.ui.component.HeaderItem
@@ -42,9 +43,10 @@ fun CoursesScreen(component: CoursesComponent) {
             }
         }
 
-        selected?.let {
+        val sidebar by component.sidebarStack.subscribeAsState()
+        sidebar.overlay?.let {
             Spacer(Modifier.width(MaterialTheme.spacing.normal))
-            CourseDetailsScreen(component.courseDetailsComponent, component::onDetailsDismiss)
+            CourseDetailsScreen(it.instance, component::onDetailsDismiss)
         }
     }
 }

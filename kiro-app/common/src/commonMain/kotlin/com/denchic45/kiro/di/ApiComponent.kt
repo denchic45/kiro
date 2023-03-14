@@ -1,12 +1,14 @@
 package com.denchic45.kiro.di
 
 import com.denchic45.kiro.preferences.AppPreferences
-import com.github.michaelbull.result.unwrap
+import com.github.michaelbull.result.expect
+import com.github.michaelbull.result.unwrapError
 import com.kiro.api.auth.AuthApi
 import com.kiro.api.auth.model.RefreshTokenRequest
 import com.kiro.api.course.CourseApi
 import com.kiro.api.studygroup.StudyGroupApi
 import com.kiro.api.user.UserApi
+import com.kiro.util.ErrorResponse
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
@@ -25,14 +27,18 @@ abstract class ApiComponent(
     @get:Provides val engine: HttpClientEngineFactory<*>,
 ) {
 
-//    @Provides
-//    protected fun guestClient(): GuestHttpClient = HttpClient(engine) {
-//        installContentNegotiation()
-//    }
+    @LayerScope
+    @Provides
+    fun authApi(client: GuestHttpClient): AuthApi = AuthApi(client)
 
     @LayerScope
     @Provides
-    fun authApi(client: HttpClient): AuthApi = AuthApi(client)
+    fun guestClient():GuestHttpClient= HttpClient(engine) {
+        defaultRequest {
+            url("http://127.0.0.1:8080")
+        }
+        installContentNegotiation()
+    }
 
     @LayerScope
     @Provides
@@ -50,7 +56,10 @@ abstract class ApiComponent(
                 refreshTokens {
                     val result = AuthApi(client)
                         .refreshToken(RefreshTokenRequest(oldTokens!!.refreshToken))
-                    val unwrapped = result.unwrap()
+                    val unwrapped = result.expect {
+                        val unwrapError: ErrorResponse = result.unwrapError()
+                        unwrapError.error.toString() + unwrapError.code
+                    }
                     BearerTokens(unwrapped.token, unwrapped.refreshToken)
                 }
             }
@@ -70,9 +79,7 @@ abstract class ApiComponent(
     fun studyGroupApi(client: HttpClient): StudyGroupApi = StudyGroupApi(client)
 }
 
-//typealias GuestHttpClient = HttpClient
-
-//typealias AuthHttpClient = HttpClient
+typealias GuestHttpClient = HttpClient
 
 private fun HttpClientConfig<out HttpClientEngineConfig>.installContentNegotiation() {
     install(ContentNegotiation) {

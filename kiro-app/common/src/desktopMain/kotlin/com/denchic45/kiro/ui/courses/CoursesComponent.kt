@@ -1,6 +1,10 @@
 package com.denchic45.kiro.ui.courses
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.router.overlay.*
+import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.parcelable.Parcelable
+import com.arkivanov.essenty.parcelable.Parcelize
 import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.repository.CourseRepository
@@ -24,6 +28,15 @@ class CoursesComponent(
     private val componentContext: ComponentContext,
 ) : ComponentContext by componentContext {
 
+    private val sidebarNavigation = OverlayNavigation<CourseDetailsConfig>()
+
+    val sidebarStack: Value<ChildOverlay<CourseDetailsConfig, CourseDetailsComponent>> =
+        childOverlay(
+            source = sidebarNavigation,
+            handleBackButton = true,
+        ) { config, componentContext ->
+            _courseDetailsComponent(config.id, componentContext)
+        }
 
     private val componentScope = componentScope()
 
@@ -35,18 +48,24 @@ class CoursesComponent(
         Resource.Loading
     )
 
+    @Parcelize
+    data class CourseDetailsConfig(
+        val id: UUID,
+    ) : Parcelable
+
     val selectedCourse = MutableStateFlow<UUID?>(null)
     val group = MutableStateFlow<StudyGroupResponse?>(null)
 
-    val courseDetailsComponent: CourseDetailsComponent
-        get() = _courseDetailsComponent(selectedCourse.value!!, componentContext)
-
     fun onCourseClick(id: UUID) {
-        selectedCourse.value = id
+        sidebarNavigation.activate(CourseDetailsConfig(id)) {
+            selectedCourse.value = id
+        }
     }
 
     fun onDetailsDismiss() {
-        selectedCourse.update { null }
+        sidebarNavigation.dismiss {
+            selectedCourse.update { null }
+        }
     }
 
     fun onGroupClick(id: UUID) {

@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.ui.studygroupDetails.StudyGroupDetailsComponent
@@ -52,9 +53,12 @@ fun StudyGroupsScreen(component: StudyGroupsComponent) {
             }
         }
 
-        details?.let {
+        val state by component.sidebarStack.subscribeAsState()
+
+        state.overlay?.let {
             Spacer(Modifier.width(MaterialTheme.spacing.normal))
-            StudyGroupDetailsScreen(component.studyGroupDetailsComponent) { component.onDetailsDismiss() }
+            StudyGroupDetailsScreen(it.instance) { component.onDetailsDismiss() }
+
         }
     }
 }
@@ -64,7 +68,7 @@ fun StudyGroupListItem(
     response: StudyGroupResponse,
     selected: Boolean,
     interactionSource: MutableInteractionSource = remember(::MutableInteractionSource),
-    onClick: (UUID) -> Unit
+    onClick: (UUID) -> Unit,
 ) {
     Row(
         Modifier.run {
