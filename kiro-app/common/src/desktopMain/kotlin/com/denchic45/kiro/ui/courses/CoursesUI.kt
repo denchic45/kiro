@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.denchic45.kiro.common.Resource
 import com.denchic45.kiro.common.onSuccess
 import com.denchic45.kiro.ui.component.HeaderItem
+import com.denchic45.kiro.ui.courseDetails.CourseDetailsComponent
 import com.denchic45.kiro.ui.theme.spacing
 import com.kiro.api.course.model.CourseResponse
 import com.kiro.api.studygroup.model.StudyGroupResponse
@@ -24,14 +26,14 @@ import java.util.*
 @Composable
 fun CoursesScreen(component: CoursesComponent) {
     val courses by component.courses.collectAsState()
-    val details by component.selectedCourse.collectAsState()
+    val selected by component.selectedCourse.collectAsState()
     Row {
         courses.onSuccess {
             LazyColumn(Modifier.fillMaxHeight().weight(1f)) {
                 items(it) {
                     CourseListItem(
                         response = it,
-                        selected = details?.first?.id == it.id,
+                        selected = selected == it.id,
                         onClick = { component.onCourseClick(it) },
                         onClickAction = {}
                     ) {}
@@ -40,12 +42,9 @@ fun CoursesScreen(component: CoursesComponent) {
             }
         }
 
-        details?.let {
+        selected?.let {
             Spacer(Modifier.width(MaterialTheme.spacing.normal))
-            CourseDetails(
-                it.first,
-                it.second,
-                { component.onGroupClick(it) }) { component.onDetailsDismiss() }
+            CourseDetailsScreen(component.courseDetailsComponent)
         }
     }
 }
@@ -130,11 +129,18 @@ fun CourseListItem(
     }
 }
 
+@Composable
+fun CourseDetailsScreen(component: CourseDetailsComponent) {
+    val course by component.course.collectAsState()
+    val groups by component.groups.collectAsState()
+    CourseDetails(course, groups, {}) {}
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CourseDetails(
-    response: CourseResponse,
-    groups: List<StudyGroupResponse>,
+    course: Resource<CourseResponse>,
+    groups: Resource<List<StudyGroupResponse>>,
     onGroupClick: (UUID) -> Unit,
     onDismissClick: () -> Unit,
 ) {
@@ -143,43 +149,47 @@ fun CourseDetails(
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(Modifier) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(start = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(response.name, Modifier)
-                Spacer(Modifier.weight(1f))
-                IconButton(onClick = { onDismissClick() }, modifier = Modifier) {
-                    Icon(
-                        Icons.Default.Close,
-                        null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+            course.onSuccess { course ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(start = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(course.name, Modifier)
+                    Spacer(Modifier.weight(1f))
+                    IconButton(onClick = { onDismissClick() }, modifier = Modifier) {
+                        Icon(
+                            Icons.Default.Close,
+                            null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
+                Divider(Modifier.fillMaxWidth())
+                ListItem(
+                    headlineText = { Text("${course.plannedStudents} чел.") },
+                    leadingContent = { Icon(Icons.Outlined.Group, null) },
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+                )
+                ListItem(
+                    headlineText = { Text("${course.plannedHours} час.") },
+                    leadingContent = { Icon(Icons.Outlined.Timer, null) },
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+                )
             }
-            Divider(Modifier.fillMaxWidth())
-            ListItem(
-                headlineText = { Text("${response.plannedStudents} чел.") },
-                leadingContent = { Icon(Icons.Outlined.Group, null) },
-                colors = ListItemDefaults.colors(containerColor = Color.Transparent)
-            )
-            ListItem(
-                headlineText = { Text("${response.plannedHours} час.") },
-                leadingContent = { Icon(Icons.Outlined.Timer, null) },
-                colors = ListItemDefaults.colors(containerColor = Color.Transparent)
-            )
-            HeaderItem("Группы") {
-                IconButton(onClick = {}) {
-                    Icon(
-                        imageVector = Icons.Default.Add,
-                        contentDescription = null,
-                        modifier = Modifier.padding(end = 4.dp)
-                    )
+            groups.onSuccess { groups ->
+                HeaderItem("Группы") {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = null,
+                            modifier = Modifier.padding(end = 4.dp)
+                        )
+                    }
                 }
-            }
-            LazyColumn {
-                items(groups) {
-                    CourseStudyGroupItem(it) { id -> onGroupClick(id) }
+                LazyColumn {
+                    items(groups) {
+                        CourseStudyGroupItem(it) { id -> onGroupClick(id) }
+                    }
                 }
             }
         }
