@@ -2,6 +2,7 @@ package com.denchic45.kiro.ui.auth
 
 
 import com.arkivanov.decompose.ComponentContext
+import com.denchic45.kiro.preferences.AppPreferences
 import com.denchic45.kiro.util.componentScope
 import com.github.michaelbull.result.onFailure
 import com.github.michaelbull.result.onSuccess
@@ -16,6 +17,7 @@ import me.tatarka.inject.annotations.Inject
 @Inject
 class AuthComponent(
     private val authApi: AuthApi,
+    private val appPreferences: AppPreferences,
     @Assisted
     componentContext: ComponentContext,
 ) : ComponentContext by componentContext {
@@ -37,7 +39,10 @@ class AuthComponent(
             val value = uiState.value
             uiState.update { it.copy(isLoading = true, error = null) }
             authApi.signInByEmailPassword(SignInByEmailPasswordRequest(value.email, value.password))
-                .onSuccess { }
+                .onSuccess { response ->
+                    appPreferences.token = response.token
+                    appPreferences.refreshToken = response.refreshToken
+                }
                 .onFailure { error ->
                     uiState.update { it.copy(isLoading = false, error = error.error.reason) }
                 }

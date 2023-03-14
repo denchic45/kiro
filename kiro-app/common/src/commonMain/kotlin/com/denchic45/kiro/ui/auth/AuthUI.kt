@@ -15,10 +15,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.denchic45.kiro.ui.theme.spacing
+import kotlinx.coroutines.Dispatchers
 
 @Composable
 fun AuthScreen(component: AuthComponent) {
-    val uiState by component.uiState.collectAsState()
+    val uiState by component.uiState.collectAsState(Dispatchers.Default)
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         AuthUI(uiState, component::onEmailType, component::onPasswordType, component::onSignInClick)
     }
@@ -41,7 +42,9 @@ fun AuthUI(
         Spacer(Modifier.height(MaterialTheme.spacing.large))
         TextField(
             value = uiState.email,
-            onValueChange = { onEmailType(it) },
+            onValueChange = {
+                onEmailType(it)
+            },
             modifier = Modifier.fillMaxWidth(),
             label = { Text("Email") },
             singleLine = true
@@ -64,12 +67,16 @@ fun AuthUI(
                 // Please provide localized description for accessibility services
                 val description = if (passwordVisible) "Hide password" else "Show password"
 
-                IconButton(onClick = {passwordVisible = !passwordVisible}){
-                    Icon(imageVector  = image, description)
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(imageVector = image, description)
                 }
             }
         )
         Spacer(Modifier.height(16.dp))
+        uiState.error?.let {
+            Text(it)
+            Spacer(Modifier.height(16.dp))
+        }
         Button(onClick = { onSignInClick() }) {
             Text("Войти")
         }

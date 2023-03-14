@@ -38,20 +38,20 @@ abstract class ApiComponent(
     @Provides
     fun authedClient(appPreferences: AppPreferences): HttpClient = HttpClient(engine) {
         defaultRequest {
-            url("http://127.0.0.1:8080/")
+            url("http://127.0.0.1:8080")
         }
         installContentNegotiation()
         install(WebSockets)
         install(Auth) {
             bearer {
                 loadTokens {
-                    BearerTokens(appPreferences.token?:"", appPreferences.refreshToken)
+                    BearerTokens(appPreferences.token ?: "", appPreferences.refreshToken)
                 }
                 refreshTokens {
-                    val result =
-                        AuthApi(client).refreshToken(RefreshTokenRequest(oldTokens!!.refreshToken))
-                            .unwrap()
-                    BearerTokens(result.token, result.refreshToken)
+                    val result = AuthApi(client)
+                        .refreshToken(RefreshTokenRequest(oldTokens!!.refreshToken))
+                    val unwrapped = result.unwrap()
+                    BearerTokens(unwrapped.token, unwrapped.refreshToken)
                 }
             }
         }
