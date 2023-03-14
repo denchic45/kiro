@@ -17,8 +17,8 @@ class StudyGroupRepository(
         return studyGroupApi.getAll().toResource()
     }
 
-    suspend fun findByCourseId(courseId: UUID): ResponseResult<List<StudyGroupResponse>> {
-        return studyGroupApi.getByCourseId(courseId)
+    suspend fun findByCourseId(courseId: UUID): Resource<List<StudyGroupResponse>> {
+        return studyGroupApi.getByCourseId(courseId).toResource()
     }
 
     suspend fun findById(id: UUID): Resource<StudyGroupResponse> {

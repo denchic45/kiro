@@ -19,5 +19,5 @@ class CourseDao(id: EntityID<UUID>) : UUIDEntity(id) {
     var plannedHours by Courses.plannedHours
     var plannedStudentsCount by Courses.plannedStudentsCount
 
-    val groups by StudyGroupDao referrersOn StudyGroups.id
+    val groups by StudyGroupDao referrersOn StudyGroups.courseId
 }

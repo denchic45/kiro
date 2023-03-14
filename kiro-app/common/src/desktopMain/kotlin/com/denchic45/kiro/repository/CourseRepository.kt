@@ -26,7 +26,7 @@ class CourseRepository(private val courseApi: CourseApi) {
         return courseApi.create(request)
     }
 
-    suspend fun findById(id: UUID): ResponseResult<CourseResponse> {
-        return courseApi.getById(id)
+    suspend fun findById(id: UUID): Resource<CourseResponse> {
+        return courseApi.getById(id).toResource()
     }
 }
